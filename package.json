@@ -1,0 +1,22 @@
+{
+  "name": "meetup-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4lbatr0s/meetup-clone.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/4lbatr0s/meetup-clone/issues"
+  },
+  "homepage": "https://github.com/4lbatr0s/meetup-clone#readme",
+  "dependencies": {
+    "chalk": "^4.1.0"
+  }
+}
