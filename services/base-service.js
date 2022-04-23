@@ -1,5 +1,5 @@
 const fs = require('fs')
-const Flatted = require('flatted/cjs')
+const flatted = require('flatted')
 
 module.exports = class BaseService{
     constructor(model, dbPath){
@@ -8,9 +8,10 @@ module.exports = class BaseService{
     }
 
 
+
 async findAll(){
     return new Promise((resolve, reject) => {
-        fs.readFile(this.dbPath, 'utf-8', async (err,file) => {
+        fs.readFile(this.dbPath, 'utf8', async (err,file) => {
             if(err){
                 if(err.code == 'ENOENT') //TODO:NO SUCH file.
                 {
@@ -21,7 +22,7 @@ async findAll(){
             }
                //object mapping
             //do not use JSON.parse use Flatted.parse
-            const items = Flatted.parse(file).map(this.model.create)//you can pass functions to map function.
+            const items = flatted.parse(file).map(this.model.create)//you can pass functions to map function.
             resolve(items)
         })
     })
@@ -45,10 +46,18 @@ async del(itemId){
     await this.saveAll(allItems) //save to db
 }
 
-async find(itemId = 1)
+
+  //default id is 1.
+  async find(itemId = 1) {
+    const allItems = await this.findAll()
+
+    return allItems.find(p => p.id == itemId)
+  }
+
+
 async saveAll(items){
     return new Promise((resolve, reject) => {
-        fs.writeFile(this.dbPath, Flatted.stringify(items), (err,file) => {
+        fs.writeFile(this.dbPath, flatted.stringify(items), (err,file) => {
             if(err) return reject() //FIXME:The return purpose is to terminate the execution of the function after the rejection, and prevent the execution of the code after it. 
             resolve()
         })

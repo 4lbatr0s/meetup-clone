@@ -3,8 +3,8 @@ const MeetupModel = require("../models/meetup")
 
 class MeetupService extends BaseService{
     constructor(){
-        super(MeetupModel, `${__dirname}/../databases/meetups.json`)
+        super(MeetupModel, `${__dirname}/../meetup-database.json`)
     }
 }
 
-module.exports = MeetupService()
+module.exports = new MeetupService()

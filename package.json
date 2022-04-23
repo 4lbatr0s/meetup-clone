@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,9 @@
   },
   "homepage": "https://github.com/4lbatr0s/meetup-clone#readme",
   "dependencies": {
-    "chalk": "^4.1.0"
+    "body-parser": "^1.20.0",
+    "chalk": "^4.1.0",
+    "express": "^4.17.3",
+    "pug": "^3.0.2"
   }
 }
