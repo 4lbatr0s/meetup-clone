@@ -26,10 +26,19 @@ app.get('/person/all', async (req,res) => {
 
 app.get('/person/:id', async (req,res) => {
     const id = req.params.id
-    const person = await PersonService.find(id)
+    const person = await PersonService.find(req.params.id)
     res.send(person)
+    console.log(person);
 })
 
+app.post('/person', async (req, res) => {
+    const user = await PersonService.add(req.body)
+    res.send(user)
+  })
+  
+
+
+//uses axios.
 app.post('/person', async(req, res) => {
     const person = await PersonService.add(req.body)
     res.send(person)

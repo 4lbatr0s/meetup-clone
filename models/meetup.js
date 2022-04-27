@@ -25,7 +25,7 @@ module.exports =class Meetup{
       
       meetup.attendees = attendees.map(Person.create)
       
-      return new Meetup(name,location, attendees, id) //TODO: How this function works?
+     return meetup //TODO: How this function works?
       
       
       //TODO:We tell, I'm going to pass an object to you, this object will involve(may be more than two) two properties which are called name and attendees 

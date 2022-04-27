@@ -16,13 +16,13 @@ async findAll(){
                 if(err.code == 'ENOENT') //TODO:NO SUCH file.
                 {
                     await this.saveAll([]) //callback function, save nothing.
-                    return resolve() //return nothing, and finish after, we call resolve here because this error does not come from system.
+                    return resolve([]) //return nothing, and finish after, we call resolve here because this error does not come from system.
                 }
                 return reject(err) 
             }
                //object mapping
             //do not use JSON.parse use Flatted.parse
-            const items = flatted.parse(file).map(this.model.create)//you can pass functions to map function.
+            const items = JSON.parse(file).map(this.model.create)//you can pass functions to map function.
             resolve(items)
         })
     })
@@ -57,7 +57,7 @@ async del(itemId){
 
 async saveAll(items){
     return new Promise((resolve, reject) => {
-        fs.writeFile(this.dbPath, flatted.stringify(items), (err,file) => {
+        fs.writeFile(this.dbPath, JSON.stringify(items, null, 2), (err,file) => {
             if(err) return reject() //FIXME:The return purpose is to terminate the execution of the function after the rejection, and prevent the execution of the code after it. 
             resolve()
         })

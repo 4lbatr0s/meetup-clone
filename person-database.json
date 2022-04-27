@@ -1,1 +1,29 @@
-[["1","2"],{"name":"3","age":10000,"meetups":"4","id":3},{"name":"5","age":99,"meetups":"6","id":4},"angel",[],"mike",[]]
+[
+  {
+    "name": "serhat",
+    "age": 24,
+    "meetups": [
+      "HALO"
+    ],
+    "id": 1
+  },
+  {
+    "name": "alicia",
+    "age": 34,
+    "meetups": [
+      "HALO"
+    ],
+    "id": 2
+  },
+  {
+    "name": "mike",
+    "age": 32,
+    "meetups": [],
+    "id": 3
+  },
+  {
+    "name": "ariko",
+    "id": 4,
+    "age": 20
+  }
+]
