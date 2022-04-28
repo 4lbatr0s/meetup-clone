@@ -1,0 +1,6 @@
+extends layout 
+
+block content 
+    h1 The number of meetups in my database is #{meetups.length}
+    each meetup in meetups
+        h3 #{meetup.name} #{meetup.location} #{meetup.id}

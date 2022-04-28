@@ -1,36 +1,31 @@
-const Person = require('./person')
-const chalk = require('chalk');
+const mongoose = require("mongoose")
 
-module.exports =class Meetup{
-    constructor(name, location, attendees = [], id) {
-      this.name = name;
-      this.attendees = attendees;
-      this.location = location;
-      this.id = id;
+const MeetupSchema = new mongoose.Schema({
+  name:{
+    type:String,
+    required:true,
+    minlength:3
+  },
+  location:{
+    type:String,
+    default:''
+  },
+  attendees:[{
+    type:mongoose.SchemaTypes.ObjectId,
+    ref:'Person',
+    autopopulate:{ //TODO: prevents looping.
+      maxDepth:1
     }
-    printAttendeeNames() {
-      this.attendees.forEach(printName);
-    }
+  }]
+  //we dont need to include id, because mongodb will create unique id for every model instance.
+}) 
 
-    report() {
-      console.log(chalk.blue.bgRed.bold(this.name), 'meetup is held at', chalk.green(this.location), 'and number of attendees are', this.attendees.length)
-    }
-    // static create(obj){ //TODO: it's the Meetup class' function(it isn't a method like printAttendeeNames())
-    //   return new Meetup(obj.name, obj.attendees)
-    // }
 
-    //there is a different syntax for writing create object in JavaScript.
-    static create({name,location,attendees,id}){
-      let meetup = new Meetup(name,location,attendees,id)
-      
-      meetup.attendees = attendees.map(Person.create)
-      
-     return meetup //TODO: How this function works?
-      
-      
-      //TODO:We tell, I'm going to pass an object to you, this object will involve(may be more than two) two properties which are called name and attendees 
-    }
-  };
+//Auto-populate
+MeetupSchema.plugin(require('mongoose-autopopulate'))
 
-  printName = (person) => console.log(person.name);
 
+const MeetupModel = mongoose.model('Meetup', MeetupSchema)
+
+
+module.exports = MeetupModel
