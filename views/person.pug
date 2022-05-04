@@ -1,6 +1,7 @@
-extends layout 
+extends layout
 
-block content 
-    h1 The number of people in my database is #{people.length}
+block content
+    h1 The number of the persons is #{people.length}
     each person in people
-        h3 #{person.name} #{person.age} #{person.id} #{person.meetups}
+      p #{person.name}
+    pre #{JSON.stringify(people, null, 4)}

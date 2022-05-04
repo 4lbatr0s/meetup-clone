@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ava --verbose --watch",
+    "test-coverage": "nyc ava --verbose",
     "start": "nodemon index.js"
   },
   "repository": {
@@ -23,6 +24,13 @@
     "express": "^4.17.3",
     "mongoose": "^6.3.1",
     "mongoose-autopopulate": "^0.16.1",
+    "node-fetch": "^3.2.4",
     "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "ava": "^4.2.0",
+    "nodemon": "^2.0.16",
+    "nyc": "^15.1.0",
+    "supertest": "^6.2.3"
   }
 }

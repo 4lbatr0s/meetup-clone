@@ -20,6 +20,15 @@ class PersonService extends BaseService {
   // async savePersonModel() {
   //   await this.model.save();
   // }
+
+
+  async findPeersOver18(cb){
+    return this.model.find({
+      age:{
+        $gte:18 //greater and equals to 18.
+      }
+    })
+  }
 }
 
 module.exports = new PersonService();

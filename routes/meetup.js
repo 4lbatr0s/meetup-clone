@@ -1,3 +1,5 @@
+
+
 const router = require("express").Router();
 
 const meetupService = require("../services/meetup-service");
@@ -8,10 +10,8 @@ router.get("/all", async (req, res) => {
   }); //TODO: meetups:people, the people on the left is the object we send to the meetup.pug file for dynamic rendering.
   
   router.get("/:id", async (req, res) => {
-    const id = req.params.id;
     const meetup = await meetupService.find(req.params.id);
-    res.send(meetup);
-    console.log(meetup);
+    res.render("single-meetup", {meetup:meetup});
   });
   
   //uses axios.
