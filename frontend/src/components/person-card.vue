@@ -1,7 +1,12 @@
 <script>
 export default { //we'll use name "MeetupCard" when we import it from other files.
     name:"PersonCard",
-    props: ['person'] //TODO: meetup is the same value from HomeWiew template's meetup = "meetup". It's same with meetup, not "meetup" 
+    props: ['person'], //TODO: meetup is the same value from HomeWiew template's meetup = "meetup". It's same with meetup, not "meetup" 
+    computed:{
+        personUrl(){
+            return `/person/${this.person._id}`
+        }
+    }
 }
 </script>
 
@@ -11,7 +16,8 @@ export default { //we'll use name "MeetupCard" when we import it from other file
 <template class="templatex" lang = "pug">
 article.card
     img(:src="`https://picsum.photos/300/200?random=${person._id}`", alt="meetup-picture")
-    h2.card-title {{person.name}}
+    h2.card-title 
+        router-link(:to="personUrl") {{person.name}}
     p {{person.age}}
 </template>
 

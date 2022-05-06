@@ -16,10 +16,17 @@ router.get("/all/json", async (req, res) => {
   });   
   router.get("/:id", async (req, res) => {
     const person = await PersonService.find(req.params.id);
-    if(!user) res.status(404)
+    if(!person) res.status(404)
     res.render('data', {data:person})
   });
   
+  router.get("/:id/json", async (req, res) => {
+    const person = await PersonService.find(req.params.id);
+    if(!person) res.status(404)
+    res.send(person)
+  });
+
+
   //uses axios.
   router.post("/", async (req, res) => {
     const person = await PersonService.add(req.body);

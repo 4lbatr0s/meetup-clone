@@ -18,6 +18,11 @@ router.get("/all", async (req, res) => {
     const meetup = await meetupService.find(req.params.id);
     res.render("data", {data:meetup});
   });
+
+  router.get("/:id/json", async (req, res) => {
+    const meetup = await meetupService.find(req.params.id);
+    res.send(meetup);
+  });
   
   //uses axios.
   router.post("/", async (req, res) => {

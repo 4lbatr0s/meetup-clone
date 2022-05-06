@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PersonView from '../views/PersonView.vue'
-
+import Meetup from '../views/Meetup.vue'
+import Person from '../views/Person.vue'
 const routes = [
   {
     path: '/',
@@ -9,8 +10,18 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
+    path:'/meetup/:id',
+    name:'meetup',
+    component:Meetup
+  },
+  {
+    path:'/person/:id',
+    name:'person',
+    component:Person
+  },
+  {
+    path: '/people',
+    name: 'people',
     component: PersonView
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

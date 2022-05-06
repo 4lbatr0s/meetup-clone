@@ -5,7 +5,9 @@ export default createStore({
   state: { //state is the place where we hold our info
     counter:0,
     meetups:[],
-    persons:[]
+    persons:[],
+    meetup:{},
+    person:{}
   },
   getters: { //getters are specific functions, for example a function to bring todo arrays in state by filterin todos with true value.
   },
@@ -15,6 +17,12 @@ export default createStore({
     },
     SET_PERSONS(state, data){
       state.persons = data
+    },
+    SET_MEETUP(state, data){
+      state.meetup = data
+    },
+    SET_PERSON(state, data){
+      state.person = data
     },
     SET_COUNTER(state, data){
       state.counter = data
@@ -28,6 +36,14 @@ export default createStore({
     async fetchPersons({commit}) {
       const result = await axios.get('http://localhost:3000/person/all/json')
       commit('SET_PERSONS', result.data)
+    },
+    async fetchMeetup({commit}, id) {
+      const result = await axios.get(`http://localhost:3000/meetup/${id}/json`)
+      commit('SET_MEETUP', result.data)
+    },
+    async fetchPerson({commit}, id) {
+      const result = await axios.get(`http://localhost:3000/person/${id}/json`)
+      commit('SET_PERSON', result.data)
     },
     Increase({commit, state}){//sing value here, set value in mutation.
       const newCount = state.counter+1
