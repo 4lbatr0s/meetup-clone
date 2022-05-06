@@ -1,7 +1,0 @@
-extends layout
-
-block content
-    h1 The number of the meetups is #{meetups.length}
-    each meetup in meetups
-      p #{meetup.name}
-    pre #{JSON.stringify(meetups, null, 4)}

@@ -6,14 +6,18 @@ const attendanceService = require("../services/attendance-service");
 
 router.get("/all", async (req, res) => {
     const people = await PersonService.findAll();
-    res.render('person', {people:people})
+    res.render('items', {items:people})
     // res.render("person", { people: people }); //renders person.pug, no need for pug extension because view engine handles it for us.
   }); //TODO: people:people, the people on the left is the object we send to the person.pug file for dynamic rendering.
   
+router.get("/all/json", async (req, res) => {
+    const people = await PersonService.findAll();
+    res.send(people)
+  });   
   router.get("/:id", async (req, res) => {
     const person = await PersonService.find(req.params.id);
     if(!user) res.status(404)
-    res.render('single-person', {person:person})
+    res.render('data', {data:person})
   });
   
   //uses axios.
